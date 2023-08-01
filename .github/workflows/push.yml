@@ -15,3 +15,9 @@ jobs:
         run: docker build -t a:latest -f Dockerfile.a .
       - name: Build B
         run: docker build -t b:latest -f Dockerfile.b .
+      - name: Output A1
+        run: docker run a:latest cat /one
+      - name: Output B1
+        run: docker run b:latest cat /one
+      - name: Output B2
+        run: docker run b:latest cat /two
