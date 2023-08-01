@@ -1,0 +1,17 @@
+name: Push demo
+on:
+  push:
+
+jobs:
+  Next:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Build A
+        run: docker build -t a:latest -f Dockerfile.a .
+      - name: Build B
+        run: docker build -t b:latest -f Dockerfile.b .
