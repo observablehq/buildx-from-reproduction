@@ -15,9 +15,10 @@ jobs:
         uses: docker/setup-buildx-action@v2
 
       - name: Build A
-        run: docker build -t a:latest -f Dockerfile.a .
+        run: docker build -t a:latest --build-context shared=./context-shared/ ./context-a
       - name: Build B
-        run: docker build -t b:latest -f Dockerfile.b .
+        run: docker build -t b:latest --build-context shared=./context-shared/ ./context-b
+
       - name: Output A1
         run: docker run a:latest cat /one
       - name: Output B1
