@@ -13,11 +13,14 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
+        with:
+          driver: docker
+          install: true
 
       - name: Build A
-        run: docker buildx build -t a:latest --build-context shared=./context-shared/ ./context-a
+        run: docker build -t a:latest --build-context shared=./context-shared/ ./context-a
       - name: Build B
-        run: docker buildx build -t b:latest --build-context shared=./context-shared/ ./context-b
+        run: docker build -t b:latest --build-context shared=./context-shared/ ./context-b
 
       - name: Output A1
         run: docker run a:latest cat /one
